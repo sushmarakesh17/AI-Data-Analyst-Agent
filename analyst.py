@@ -5,6 +5,7 @@ from config import GROQ_API_KEY
 
 
 class DataAnalystAgent:
+
     def __init__(self):
         self.llm = ChatGroq(
             groq_api_key=GROQ_API_KEY,
@@ -12,7 +13,9 @@ class DataAnalystAgent:
             temperature=0
         )
 
+
     def analyze(self, dataframe_summary):
+
         prompt = f"""
 You are a Senior Business Data Analyst.
 
@@ -86,8 +89,12 @@ Important Rules:
 - Use bullet points where appropriate.
 """
 
+
         response = self.llm.invoke(
-            [HumanMessage(content=prompt)]
+            [
+                HumanMessage(content=prompt)
+            ]
         )
+
 
         return response.content
